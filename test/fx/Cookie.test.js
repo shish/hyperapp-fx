@@ -3,7 +3,7 @@ import { ReadCookie, WriteCookie, DeleteCookie } from "../../src"
 
 describe("Cookie effect", () => {
   beforeEach(() => {
-    document.cookie.split("; ").forEach(c => {
+    document.cookie.split("; ").forEach((c) => {
       let cookie = c.substr(0, c.indexOf("="))
       document.cookie = `${cookie}=; expires=${new Date(
         1970,
@@ -91,7 +91,7 @@ describe("Cookie effect", () => {
     const writeCookie = WriteCookie({
       name: "a",
       value: { an: "object" },
-      json: true
+      json: true,
     })
     runFx(writeCookie)
 

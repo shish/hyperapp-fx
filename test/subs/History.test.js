@@ -7,7 +7,7 @@ describe("History subscription", () => {
     const historyPop = HistoryPop({ action })
     const { dispatch, unsubscribe } = runFx(historyPop)
     const popStateEvent = new PopStateEvent("popstate", {
-      state: { foo: "bar" }
+      state: { foo: "bar" },
     })
     window.dispatchEvent(popStateEvent)
     expect(dispatch).toBeCalledWith(action, popStateEvent)

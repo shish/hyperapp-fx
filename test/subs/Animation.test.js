@@ -7,7 +7,7 @@ describe("Animation subscription", () => {
     const timestamp = 1001
     const defaultRequestAnimationFrame = requestAnimationFrame
     const defaultCancelAnimationFrame = cancelAnimationFrame
-    global.requestAnimationFrame = jest.fn().mockImplementationOnce(cb => {
+    global.requestAnimationFrame = jest.fn().mockImplementationOnce((cb) => {
       cb(timestamp)
       return cancelId
     })

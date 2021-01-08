@@ -6,7 +6,7 @@ describe("HistoryPush effect", () => {
     const historyPush = HistoryPush({
       state: {},
       title: "new title",
-      url: "#foo"
+      url: "#foo",
     })
     expect(history.length).toEqual(1)
     expect(history.state).toEqual(null)
@@ -21,7 +21,7 @@ describe("HistoryPush effect", () => {
     const historyPush = HistoryPush({
       state: {},
       title: "new title",
-      url: "#foo"
+      url: "#foo",
     })
     runFx(historyPush)
     expect(history.pushState).toHaveBeenCalledWith({}, "new title", "#foo")
@@ -32,7 +32,7 @@ describe("HistoryPush effect", () => {
     document.title = "another title"
     location.href = "http://localhost/#bar"
     const historyPush = HistoryPush({
-      state: {}
+      state: {},
     })
     runFx(historyPush)
     expect(history.pushState).toHaveBeenCalledWith(

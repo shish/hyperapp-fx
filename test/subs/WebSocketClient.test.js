@@ -90,7 +90,7 @@ describe("WebSocketListen subscription", () => {
       url,
       listen: listen1,
       open: onopen,
-      close: onclose
+      close: onclose,
     })
     const { unsubscribe: unsubscribe1 } = runFx(webSocketFx1)
 
@@ -100,7 +100,7 @@ describe("WebSocketListen subscription", () => {
       url,
       listen: listen2,
       open: onopen,
-      close: onclose
+      close: onclose,
     })
     const { unsubscribe: unsubscribe2 } = runFx(webSocketFx2)
     expect(WebSocket).not.toBeCalled()

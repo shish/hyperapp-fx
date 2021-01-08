@@ -9,7 +9,7 @@ describe("Merge effect", () => {
     expect(dispatch).toBeCalledWith(expect.any(Function))
     expect(dispatch.mock.calls[0][0]({ count: 0, other: "state" })).toEqual({
       count: 1,
-      other: "state"
+      other: "state",
     })
   })
 })

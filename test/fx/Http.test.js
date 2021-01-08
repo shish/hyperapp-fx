@@ -2,14 +2,14 @@ import { runFx } from "../utils"
 import { Http } from "../../src"
 
 describe("Http effect", () => {
-  it("should get json", done => {
+  it("should get json", (done) => {
     const testUrl = "https://example.com"
     global.fetch = (url, options) => {
       expect(url).toBe(testUrl)
       expect(options).toEqual({})
       return Promise.resolve({
         ok: true,
-        json: () => Promise.resolve({ response: "data" })
+        json: () => Promise.resolve({ response: "data" }),
       })
     }
 
@@ -23,14 +23,14 @@ describe("Http effect", () => {
       done()
     })
   })
-  it("should get text", done => {
+  it("should get text", (done) => {
     const testUrl = "https://example.com/hello"
     global.fetch = (url, options) => {
       expect(url).toBe(testUrl)
       expect(options).toEqual({})
       return Promise.resolve({
         ok: true,
-        text: () => Promise.resolve("hello world")
+        text: () => Promise.resolve("hello world"),
       })
     }
     const action = jest.fn()
@@ -43,7 +43,7 @@ describe("Http effect", () => {
       done()
     })
   })
-  it("should post json", done => {
+  it("should post json", (done) => {
     const testUrl = "/login"
     global.fetch = (url, options) => {
       expect(url).toBe(testUrl)
@@ -51,12 +51,12 @@ describe("Http effect", () => {
         method: "POST",
         body: {
           user: "username",
-          pass: "password"
-        }
+          pass: "password",
+        },
       })
       return Promise.resolve({
         ok: true,
-        json: () => Promise.resolve({ result: "authenticated" })
+        json: () => Promise.resolve({ result: "authenticated" }),
       })
     }
     const action = jest.fn()
@@ -64,9 +64,9 @@ describe("Http effect", () => {
       url: testUrl,
       options: {
         method: "POST",
-        body: { user: "username", pass: "password" }
+        body: { user: "username", pass: "password" },
       },
-      action
+      action,
     })
     const { dispatch } = runFx(httpFx)
 
@@ -76,7 +76,7 @@ describe("Http effect", () => {
       done()
     })
   })
-  it("should call the error handler on error", done => {
+  it("should call the error handler on error", (done) => {
     const testUrl = "https://example.com/hello"
     const error = new Error("Failed")
     global.fetch = (url, options) => {
@@ -91,7 +91,7 @@ describe("Http effect", () => {
       url: testUrl,
       response: "text",
       action: successAction,
-      error: errorAction
+      error: errorAction,
     })
     const { dispatch } = runFx(httpFx)
 
@@ -101,7 +101,7 @@ describe("Http effect", () => {
       done()
     })
   })
-  it("should call default action on error", done => {
+  it("should call default action on error", (done) => {
     const testUrl = "https://example.com/hello"
     const error = new Error("Failed")
     global.fetch = (url, options) => {
@@ -119,10 +119,10 @@ describe("Http effect", () => {
       done()
     })
   })
-  it("should call default action on error when response is not OK", done => {
+  it("should call default action on error when response is not OK", (done) => {
     const testUrl = "https://example.com/hello"
     const response = {
-      ok: false
+      ok: false,
     }
     global.fetch = (url, options) => {
       expect(url).toBe(testUrl)

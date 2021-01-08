@@ -52,10 +52,10 @@ export function WriteToStorage(props) {
     writeToStorageEffect,
     assign(
       {
-        converter: props.converter || JSON.stringify
+        converter: props.converter || JSON.stringify,
       },
       props
-    )
+    ),
   ]
 }
 
@@ -90,10 +90,10 @@ export function ReadFromStorage(props) {
     assign(
       {
         converter: props.converter || JSON.parse,
-        error: props.error
+        error: props.error,
       },
       props
-    )
+    ),
   ]
 }
 

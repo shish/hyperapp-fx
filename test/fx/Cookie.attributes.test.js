@@ -5,7 +5,7 @@ describe("Cookie effect for attributes", () => {
   beforeEach(() => {
     Object.defineProperty(document, "cookie", {
       value: "",
-      writable: true
+      writable: true,
     })
   })
 
@@ -13,7 +13,7 @@ describe("Cookie effect for attributes", () => {
     const writeCookie = WriteCookie({
       name: "name",
       value: "value",
-      path: "/path"
+      path: "/path",
     })
     runFx(writeCookie)
 
@@ -24,7 +24,7 @@ describe("Cookie effect for attributes", () => {
     const writeCookie = WriteCookie({
       name: "name",
       value: "value",
-      domain: ".domain.com"
+      domain: ".domain.com",
     })
     runFx(writeCookie)
 
@@ -51,7 +51,7 @@ describe("Cookie effect for attributes", () => {
     const writeCookie = WriteCookie({
       name: "name",
       value: "value",
-      expires: expires
+      expires: expires,
     })
     runFx(writeCookie)
 
@@ -65,7 +65,7 @@ describe("Cookie effect for attributes", () => {
       name: "name",
       value: "value",
       domain: "domain.com",
-      path: "/home"
+      path: "/home",
     })
     runFx(writeCookie)
 
