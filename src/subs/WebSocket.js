@@ -23,14 +23,41 @@ function webSocketListenEffect(dispatch, props) {
     )
     connection.listeners.push(removeError)
   }
+  var removeOpen
+  if (props.open) {
+    removeOpen = makeRemoveListener(
+      connection.socket,
+      dispatch,
+      props.open,
+      "open"
+    )
+    connection.listeners.push(removeOpen)
+  }
+  var removeClose
+  if (props.close) {
+    removeClose = makeRemoveListener(
+      connection.socket,
+      dispatch,
+      props.close,
+      "close"
+    )
+    connection.listeners.push(removeClose)
+  }
 
   return function() {
     removeListen && removeListen()
     removeError && removeError()
+    removeOpen && removeOpen()
+    removeClose && removeClose()
     connection.listeners = connection.listeners.filter(function(listener) {
-      return listener !== removeListen && listener !== removeError
+      return (
+        listener !== removeListen &&
+        listener !== removeError &&
+        listener !== removeOpen &&
+        listener !== removeClose
+      )
     })
-    if (connection.listeners.length === 0) {
+	if (connection.listeners.length === 0) {
       closeWebSocket(props)
     }
   }
@@ -46,6 +73,8 @@ function webSocketListenEffect(dispatch, props) {
  * @param {*} props.action - action to call with new incoming messages
  * @param {*} props.error - action to call if an error occurs
  * @param {*} props.ws_constructor - an optional replacement for the WebSocket constructor
+ * @param {*} props.open - action to call when the socket is opened
+ * @param {*} props.close - action to call when the socket is closed
  * @example
  * import { WebSocketListen } from "hyperapp-fx"
  *

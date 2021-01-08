@@ -700,6 +700,8 @@ Describes an effect that will open a [`WebSocket`](https://developer.mozilla.org
 | props.action | <code>\*</code> | action to call with new incoming messages |
 | props.error | <code>\*</code> | action to call if an error occurs |
 | props.ws_constructor | <code>\*</code> | an optional replacement for the WebSocket constructor |
+| props.open | <code>\*</code> | action to call when the socket is opened |
+| props.close | <code>\*</code> | action to call when the socket is closed |
 
 **Example**  
 ```js
