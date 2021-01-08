@@ -1,7 +1,7 @@
 import {
   getOpenWebSocket,
   makeRemoveListener,
-  closeWebSocket,
+  closeWebSocket
 } from "../utils.js"
 
 function webSocketListenEffect(dispatch, props) {
@@ -44,12 +44,12 @@ function webSocketListenEffect(dispatch, props) {
     connection.listeners.push(removeClose)
   }
 
-  return function () {
+  return function() {
     removeListen && removeListen()
     removeError && removeError()
     removeOpen && removeOpen()
     removeClose && removeClose()
-    connection.listeners = connection.listeners.filter(function (listener) {
+    connection.listeners = connection.listeners.filter(function(listener) {
       return (
         listener !== removeListen &&
         listener !== removeError &&

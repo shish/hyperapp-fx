@@ -6,11 +6,15 @@ const mockStorage = (store = {}) => {
   jest.spyOn(Storage.prototype, "setItem").mockImplementation(jest.fn())
   jest
     .spyOn(Storage.prototype, "getItem")
-    .mockImplementation((key) => store[key] || null)
+    .mockImplementation(key => store[key] || null)
   jest.spyOn(Storage.prototype, "removeItem").mockImplementation(jest.fn())
 }
 
-const reverser = (s) => s.split("").reverse().join("")
+const reverser = s =>
+  s
+    .split("")
+    .reverse()
+    .join("")
 
 describe("WriteToStorage effect", () => {
   beforeEach(() => {
@@ -27,7 +31,7 @@ describe("WriteToStorage effect", () => {
     const writeToStorageFx = WriteToStorage({
       key: "bar",
       value: "foo",
-      converter: reverser,
+      converter: reverser
     })
     runFx(writeToStorageFx)
     expect(sessionStorage.setItem).toBeCalledWith("bar", "oof")
@@ -62,7 +66,7 @@ describe("ReadFromStorage effect", () => {
     const readFromStorageFx = ReadFromStorage({
       key: "foo",
       action,
-      converter: reverser,
+      converter: reverser
     })
     const { dispatch } = runFx(readFromStorageFx)
     expect(dispatch).toBeCalledWith(action, { value: "bar" })
@@ -74,7 +78,7 @@ describe("ReadFromStorage effect", () => {
     const readFromStorageFx = ReadFromStorage({
       key: "foo",
       action,
-      prop: "text",
+      prop: "text"
     })
     const { dispatch } = runFx(readFromStorageFx)
     expect(dispatch).toBeCalledWith(action, { text: "bar" })

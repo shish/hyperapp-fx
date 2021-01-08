@@ -61,9 +61,9 @@ describe("Random effect", () => {
         {},
         { min: 2, max: 5 },
         { int: true, min: 1, max: 3 },
-        { bool: true },
+        { bool: true }
       ],
-      action,
+      action
     })
     const { dispatch } = runFx(randomFx)
     expect(dispatch).toBeCalledWith(action, [0.5, 3.5, 2, true])

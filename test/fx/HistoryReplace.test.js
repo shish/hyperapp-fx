@@ -6,7 +6,7 @@ describe("HistoryReplace effect", () => {
     const historyReplace = HistoryReplace({
       state: {},
       title: "new title",
-      url: "#bar",
+      url: "#bar"
     })
 
     expect(history.length).toEqual(1)
@@ -22,7 +22,7 @@ describe("HistoryReplace effect", () => {
     const historyReplace = HistoryReplace({
       state: {},
       title: "new title",
-      url: "#foo",
+      url: "#foo"
     })
     runFx(historyReplace)
     expect(history.replaceState).toHaveBeenCalledWith({}, "new title", "#foo")
@@ -33,7 +33,7 @@ describe("HistoryReplace effect", () => {
     document.title = "another title"
     location.href = "http://localhost/#bar"
     const historyReplace = HistoryReplace({
-      state: {},
+      state: {}
     })
     runFx(historyReplace)
     expect(history.replaceState).toHaveBeenCalledWith(

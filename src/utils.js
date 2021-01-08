@@ -9,13 +9,13 @@ export function assign(source, assignments) {
 export function makeRemoveListener(attachTo, dispatch, action, eventName) {
   var handler = dispatch.bind(null, action)
   attachTo.addEventListener(eventName, handler)
-  return function () {
+  return function() {
     attachTo.removeEventListener(eventName, handler)
   }
 }
 
 export function makeDispatchTime(dispatch, props) {
-  return function () {
+  return function() {
     dispatch(props.action, props.asDate ? new Date() : performance.now())
   }
 }
@@ -30,7 +30,7 @@ export function getOpenWebSocket(props) {
       : new WebSocket(props.url, props.protocols)
     connection = {
       socket: socket,
-      listeners: [],
+      listeners: []
     }
     webSocketConnections[props.url] = connection
   }
